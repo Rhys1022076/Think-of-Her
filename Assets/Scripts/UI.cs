@@ -8,6 +8,7 @@ public class UI : MonoBehaviour
 {
     public void StartGame()
     {
+        //loads level one
         SceneManager.LoadScene("To Work");
     }
 
@@ -21,7 +22,9 @@ public class UI : MonoBehaviour
     {
         if (Input.GetKey("escape"))
         {
+            //return to menu
             SceneManager.LoadScene("Menu");
         }
     }
+
 }
