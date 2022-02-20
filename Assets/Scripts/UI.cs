@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
+    public GameObject canvasRestart;
+
     public void StartGame()
     {
         //loads level one
@@ -27,4 +28,17 @@ public class UI : MonoBehaviour
         }
     }
 
+    public void Restart()
+	{
+        Debug.Log("restarting");
+        StartCoroutine(Overwhelmed());
+	}
+
+    public IEnumerator Overwhelmed()
+	{
+        canvasRestart.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        canvasRestart.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

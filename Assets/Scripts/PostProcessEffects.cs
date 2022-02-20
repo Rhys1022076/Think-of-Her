@@ -11,16 +11,17 @@ public class PostProcessEffects : MonoBehaviour
 
     public GameObject reaction;
     public GameObject player;
-
+    public UI ui;
+    
     void Start()
     {
         volume.profile.TryGetSettings(out vignette);
-        vignette.intensity.value = 0.15f;
+        vignette.intensity.value = 0.2f;
     }
 
     public void IncreaseIntensity()
     {
-        vignette.intensity.value += 0.05f;  
+        vignette.intensity.value += 0.1f;
 
         StopAllCoroutines();
         StartCoroutine(ResetUI());
@@ -28,7 +29,7 @@ public class PostProcessEffects : MonoBehaviour
 
     public void DecreaseIntensity()
     {
-        vignette.intensity.value -= 0.05f;
+        vignette.intensity.value -= 0.1f;
 
         StopAllCoroutines();
         StartCoroutine(ResetUI());
@@ -40,4 +41,19 @@ public class PostProcessEffects : MonoBehaviour
         yield return new WaitForSeconds (0.1f);
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
+
+    public void MaxIntensity()
+	{
+        if (Input.GetKey(KeyCode.C))
+		{
+            vignette.intensity.value += 0.5f;
+            Debug.Log("intensifying");
+		}
+        
+        if (vignette.intensity.value >= 0.6f)
+        {
+            Debug.Log("Searching");
+            FindObjectOfType<UI>().Restart();
+        }
+	}
 }
