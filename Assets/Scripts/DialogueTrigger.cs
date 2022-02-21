@@ -11,7 +11,7 @@ public class DialogueTrigger : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             TriggerDialogue();
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 

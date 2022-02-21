@@ -9,19 +9,19 @@ public class ButtonSwap : MonoBehaviour
 
 	public Vector2 tempPosition;
 
-	//private void Awake()
-	//{
-	//	Invoke("SwapTransforms", 0.5f);
-	//}
+	private void Awake()
+	{
+		Invoke("SwapTransforms", 0.5f);
+	}
 
-	//public void SwapTransforms()
-	//{
-	//	float randomTime = Random.Range(0.2f, 1f);
+	public void SwapTransforms()
+	{
+		float randomTime = Random.Range(0.2f, 1f);
 
-	//	Vector2 tempPosition = spiral.transform.position;
-	//	spiral.transform.position = think.transform.position;
-	//	think.transform.position = tempPosition;
+		Vector2 tempPosition = spiral.transform.position;
+		spiral.transform.position = think.transform.position;
+		think.transform.position = tempPosition;
 
-	//	Invoke("SwapTransforms", randomTime);
-	//}
+		Invoke("SwapTransforms", randomTime);
+	}
 }

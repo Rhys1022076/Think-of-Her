@@ -6,18 +6,25 @@ using UnityEngine.SceneManagement;
 public class UI : MonoBehaviour
 {
     public GameObject canvasRestart;
+    public GameObject canvasHelp;
 
     public void StartGame()
-    {
+    {        
         //loads level one
         SceneManager.LoadScene("To Work");
     }
 
-    public void QuitGame()
-    {
-        Debug.Log("Bye");
-        Application.Quit();
-    }
+    public void Help()
+	{
+        //set instructions canvas to active
+        canvasHelp.SetActive(true);
+	}
+
+    //public void QuitGame()
+    //{
+    //    Debug.Log("Bye");
+    //    Application.Quit();
+    //}
 
     private void Update()
     {

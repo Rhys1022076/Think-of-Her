@@ -19,7 +19,22 @@ public class PostProcessEffects : MonoBehaviour
         vignette.intensity.value = 0.2f;
     }
 
-    public void IncreaseIntensity()
+	private void Update()
+	{
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            vignette.intensity.value += 0.1f;
+            Debug.Log("intensifying");
+        }
+
+        if (vignette.intensity.value >= 0.6f)
+        {
+            Debug.Log("Searching");
+            FindObjectOfType<UI>().Restart();
+        }
+    }
+
+	public void IncreaseIntensity()
     {
         vignette.intensity.value += 0.1f;
 
@@ -41,19 +56,4 @@ public class PostProcessEffects : MonoBehaviour
         yield return new WaitForSeconds (0.1f);
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
-
-    public void MaxIntensity()
-	{
-        if (Input.GetKey(KeyCode.C))
-		{
-            vignette.intensity.value += 0.5f;
-            Debug.Log("intensifying");
-		}
-        
-        if (vignette.intensity.value >= 0.6f)
-        {
-            Debug.Log("Searching");
-            FindObjectOfType<UI>().Restart();
-        }
-	}
 }

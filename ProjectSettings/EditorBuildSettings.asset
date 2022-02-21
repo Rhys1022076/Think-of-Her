@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Work.unity
     guid: 1b944888096504d4b9195153a4b6956c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/From Work.unity
     guid: 58d382818d84c1247981b5265630a492
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Home.unity
     guid: d7ad39b552988cd47a93e4ba6bb76fa6
   m_configObjects: {}
