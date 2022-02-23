@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour
@@ -11,7 +12,13 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject player;
     public Animator animator;
+    public Animator flashAnim;
     public GameObject reaction;
+
+    public AudioSource sighAudio;
+    public AudioSource pixAudio;
+    public AudioClip sighClip;
+    public AudioClip pixClip;
     
     //creates a queue of sentences to be displayed
     private Queue<string> sentences;
@@ -86,9 +93,31 @@ public class DialogueManager : MonoBehaviour
         //trigger animation for dialogue box disappearing
         animator.SetBool("IsOpen", false);
 
-        //reenable player movement
-        //player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-        
-        reaction.SetActive(true);
+
+        if (SceneManager.GetActiveScene().name == "From Work")
+        {
+            //reenable player movement
+            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+
+            StopAllCoroutines();
+            FindObjectOfType<PostProcessEffects>().StartClosing();
+
+        }
+        else if (SceneManager.GetActiveScene().name == "Home")
+		{
+            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+
+            flashAnim.Play("GoldFlash");
+            sighAudio.PlayOneShot(sighClip);
+            pixAudio.PlayOneShot(pixClip);
+
+            StopAllCoroutines();
+            FindObjectOfType<PostProcessEffects>().StartBloom();
+        }
+        else
+        {
+            //set reaction canvas active
+            reaction.SetActive(true);
+        }
     }
 }

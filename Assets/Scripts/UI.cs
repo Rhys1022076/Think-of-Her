@@ -20,11 +20,11 @@ public class UI : MonoBehaviour
         canvasHelp.SetActive(true);
 	}
 
-    //public void QuitGame()
-    //{
-    //    Debug.Log("Bye");
-    //    Application.Quit();
-    //}
+    public void QuitGame()
+    {
+        Debug.Log("Bye");
+        Application.Quit();
+    }
 
     private void Update()
     {
@@ -37,7 +37,7 @@ public class UI : MonoBehaviour
 
     public void Restart()
 	{
-        Debug.Log("restarting");
+        //Debug.Log("restarting");
         StartCoroutine(Overwhelmed());
 	}
 
